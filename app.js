@@ -7,15 +7,22 @@ app.use(cors());
 
 app.set('port', process.env.PORT || 3001);
 
-app.get('/api', (req, res) => {
+app.get('/api/article/:type/:index', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    fs.readFile("lecture.md", "utf8", (err, data) => {
+    fs.readFile(`article/${req.params.type}/category.txt`, "utf8", (err, categoryData) => {
         if (err) {
-          console.error(err);
+            res.json({ ok: false, error: err })
         } else {
-            res.json({data: data})
+            fs.readFile(`article/${req.params.type}/${req.params.index}.md`, "utf8", (err, data) => {
+                if (err) {
+                    res.json({ ok: false, error: err })
+                } else {
+                    res.json({ ok: true, article: data, category: ["Typescript 강좌", ['2']] })
+                }
+            });
         }
-      });
+    });
+
 })
 
 app.listen(app.get('port'), () => {
