@@ -9,7 +9,7 @@ app.set('port', process.env.PORT || 3001);
 
 app.get('/api/article/:type/:index', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    fs.readFile(`article/${req.params.type}/category.txt`, "utf8", (err, categoryData) => {
+    fs.readFile(`article/python/category.txt`, "utf8", (err, categoryData) => {
         if (err) {
             res.json({ ok: false, error: err })
         } else {
