@@ -17,7 +17,7 @@ app.get('/api/article/:type/:index', (req, res) => {
                 if (err) {
                     res.json({ ok: false, error: err })
                 } else {
-                    res.json({ ok: true, article: data, category: ["Typescript 강좌", ['2']] })
+                    res.json({ ok: true, article: data, category: ["Typescript 강좌", '2'] })
                 }
             });
         }
